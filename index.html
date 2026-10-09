@@ -59,7 +59,7 @@
         </div>
         <div class="min-w-0">
           <h1 class="text-sm sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-1.5 sm:gap-2 truncate">
-            <span class="italic" text-[20px]">PicToPdf</span>
+            <span class="italic text-base sm:text-xl font-bold">PicToPdf</span>
             <span class="text-[10px] sm:text-[11px] font-medium not-italic px-1.5 sm:px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 shrink-0">100% Private</span>
           </h1>
           <p class="text-xs text-slate-500 hidden sm:block">Convert multiple images into high-quality PDF in seconds</p>
@@ -81,31 +81,32 @@
   <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 flex flex-col gap-4 sm:gap-6">
 
     <!-- Upload Hero Zone (Shown when no images uploaded) -->
-    <div id="dropZone" class="relative group border-2 border-dashed border-slate-300 hover:border-brand-500 rounded-2xl p-6 sm:p-12 text-center bg-white hover:bg-brand-50/20 transition-all duration-300 cursor-pointer shadow-sm">
+    <div id="dropZone" class="relative group border-2 border-dashed border-slate-300 hover:border-brand-500 rounded-2xl p-6 sm:p-14 lg:p-16 text-center bg-white hover:bg-brand-50/20 transition-all duration-300 cursor-pointer shadow-sm">
       <input type="file" id="fileInput" multiple accept="image/png, image/jpeg, image/jpg, image/webp, image/bmp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
       
-      <div class="flex flex-col items-center justify-center pointer-events-none max-w-md mx-auto">
-        <div class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-100 transition-transform duration-300 shadow-sm">
-          <i data-lucide="upload-cloud" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+      <div class="flex flex-col items-center justify-center pointer-events-none max-w-md sm:max-w-xl lg:max-w-2xl mx-auto">
+        <div class="w-14 h-14 sm:w-16 lg:w-20 lg:h-20 mb-3.5 sm:mb-5 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-100 transition-transform duration-300 shadow-sm">
+          <i data-lucide="upload-cloud" class="w-7 h-7 sm:w-8 lg:w-10 lg:h-10"></i>
         </div>
-        <h2 class="text-base sm:text-2xl font-bold text-slate-800 mb-1.5 sm:mb-2 tracking-tight">
-          Upload Images or <span class="text-brand-600 underline underline-offset-4">Browse</span>
+        <h2 class="text-base sm:text-2xl lg:text-3xl font-bold text-slate-800 mb-2 tracking-tight">
+          <span class="sm:hidden">Upload Images or <span class="text-brand-600 underline underline-offset-4">Browse</span></span>
+          <span class="hidden sm:inline">Drop your images here, or <span class="text-brand-600 underline underline-offset-4 hover:text-brand-700">Browse Files</span></span>
         </h2>
-        <p class="text-xs sm:text-sm text-slate-500 mb-4 px-2 leading-relaxed">
-          Supports JPG, PNG, WebP & BMP. Merge into high-quality PDF in seconds.
+        <p class="text-xs sm:text-sm lg:text-base text-slate-500 max-w-sm sm:max-w-md lg:max-w-xl mb-4 sm:mb-6 px-2 leading-relaxed">
+          Supports JPG, PNG, WebP &amp; BMP. Merge multiple images into a single high-quality PDF in seconds.
         </p>
-        <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 text-[11px] sm:text-xs text-slate-600 font-medium">
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100/80 rounded-full border border-slate-200/60">
-            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-            <span>Multiple Images</span>
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[11px] sm:text-xs lg:text-sm text-slate-600 font-medium">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200/80 shadow-2xs transition-colors">
+            <i data-lucide="check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0"></i>
+            <span>Multiple Selection</span>
           </span>
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100/80 rounded-full border border-slate-200/60">
-            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-            <span>Reorder & Crop</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200/80 shadow-2xs transition-colors">
+            <i data-lucide="check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0"></i>
+            <span>Reorder &amp; Crop</span>
           </span>
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100/80 rounded-full border border-slate-200/60">
-            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-            <span>100% Free & Safe</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200/80 shadow-2xs transition-colors">
+            <i data-lucide="check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0"></i>
+            <span>100% Free &amp; Private</span>
           </span>
         </div>
       </div>

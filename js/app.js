@@ -357,17 +357,17 @@ function renderImageCards() {
       </div>
 
       <!-- Footer Info & Actions -->
-      <div class="p-2 sm:p-2.5 flex flex-col justify-between border-t border-slate-100 bg-white gap-1.5">
-        <div class="flex items-center justify-between gap-1 min-w-0">
+      <div class="p-2 sm:p-2.5 flex flex-col sm:flex-row sm:items-center sm:justify-between border-t border-slate-100 bg-white gap-1.5 sm:gap-2">
+        <div class="truncate min-w-0 flex-1">
           <p class="text-xs font-medium text-slate-700 truncate" title="${img.name}">${img.name}</p>
-          <span class="text-[10px] text-slate-400 shrink-0">${sizeKB} KB</span>
+          <span class="text-[10px] text-slate-400">${sizeKB} KB</span>
         </div>
 
-        <div class="flex items-center justify-end gap-1 shrink-0 pt-1 border-t border-slate-100/75">
+        <div class="flex items-center justify-end gap-0.5 sm:gap-1 shrink-0 pt-1 sm:pt-0 border-t border-slate-100 sm:border-0">
           <!-- Crop Button -->
           <button 
             type="button" 
-            class="crop-btn flex-1 sm:flex-initial p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 active:bg-brand-100 flex items-center justify-center transition" 
+            class="crop-btn p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 active:bg-brand-100 flex items-center justify-center transition" 
             title="Crop Image (Manual & Auto)"
           >
             <i data-lucide="crop" class="w-3.5 h-3.5"></i>
@@ -376,7 +376,7 @@ function renderImageCards() {
           <!-- Rotate Button -->
           <button 
             type="button" 
-            class="rotate-btn flex-1 sm:flex-initial p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 active:bg-brand-100 flex items-center justify-center transition" 
+            class="rotate-btn p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 active:bg-brand-100 flex items-center justify-center transition" 
             title="Rotate 90° Clockwise"
           >
             <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
@@ -385,7 +385,7 @@ function renderImageCards() {
           <!-- Delete Button -->
           <button 
             type="button" 
-            class="delete-btn flex-1 sm:flex-initial p-1.5 rounded-lg text-slate-500 hover:text-red-600 hover:bg-red-50 active:bg-red-100 flex items-center justify-center transition" 
+            class="delete-btn p-1.5 rounded-lg text-slate-500 hover:text-red-600 hover:bg-red-50 active:bg-red-100 flex items-center justify-center transition" 
             title="Remove Image"
           >
             <i data-lucide="trash" class="w-3.5 h-3.5"></i>
