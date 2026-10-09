@@ -54,8 +54,10 @@ const cropRatioButtons = document.querySelectorAll('.crop-ratio-btn');
 // PDF Preview Modal Elements
 const previewBtn = document.getElementById('previewBtn');
 const pdfPreviewModal = document.getElementById('pdfPreviewModal');
-const pdfPreviewFrame = document.getElementById('pdfPreviewFrame');
+const pdfPreviewPagesContainer = document.getElementById('pdfPreviewPagesContainer');
 const previewFileNameText = document.getElementById('previewFileNameText');
+const previewPageCountBadge = document.getElementById('previewPageCountBadge');
+const previewOpenNewTabBtn = document.getElementById('previewOpenNewTabBtn');
 const previewModalDownloadBtn = document.getElementById('previewModalDownloadBtn');
 const closePdfPreviewBtn = document.getElementById('closePdfPreviewBtn');
 const successPreviewBtn = document.getElementById('successPreviewBtn');
@@ -65,6 +67,7 @@ let cropperInstance = null;
 let activeCropImage = null;
 let currentPdfBlobUrl = null;
 let currentPdfFileName = 'converted-document.pdf';
+let currentPreviewPages = [];
 let downloadSuccessTimer = null;
 
 // Hide success modal & clear auto-close timer
@@ -225,7 +228,7 @@ function setupEventListeners() {
     successPreviewBtn.addEventListener('click', () => {
       hideSuccessModal();
       if (currentPdfBlobUrl) {
-        openPdfPreview(currentPdfBlobUrl, currentPdfFileName);
+        openPdfPreview(currentPdfBlobUrl, currentPdfFileName, currentPreviewPages);
       }
     });
   }
@@ -733,21 +736,22 @@ function processImage(imgItem, quality) {
             if (!blob) {
               const dataUrl = canvas.toDataURL('image/jpeg', quality);
               const bytes = dataUrlToUint8Array(dataUrl);
-              resolve({ bytes, width: canvas.width, height: canvas.height });
+              resolve({ bytes, width: canvas.width, height: canvas.height, canvas });
               return;
             }
             blob.arrayBuffer().then(buffer => {
               resolve({
                 bytes: new Uint8Array(buffer),
                 width: canvas.width,
-                height: canvas.height
+                height: canvas.height,
+                canvas
               });
             }).catch(reject);
           }, 'image/jpeg', quality);
         } else {
           const dataUrl = canvas.toDataURL('image/jpeg', quality);
           const bytes = dataUrlToUint8Array(dataUrl);
-          resolve({ bytes, width: canvas.width, height: canvas.height });
+          resolve({ bytes, width: canvas.width, height: canvas.height, canvas });
         }
       } catch (err) {
         reject(err);
@@ -775,6 +779,7 @@ async function buildPdfDoc(progressCallback) {
 
   const totalImages = state.images.length;
   const { pageSize, orientation, margin, quality, fileName } = state.settings;
+  const previewPages = [];
 
   for (let i = 0; i < totalImages; i++) {
     const imgItem = state.images[i];
@@ -791,10 +796,12 @@ async function buildPdfDoc(progressCallback) {
 
     // 3. Determine Page Dimensions & Orientation
     let pageWidth, pageHeight;
+    let formatInfo = pageSize;
 
     if (pageSize === 'FIT') {
       pageWidth = processed.width;
       pageHeight = processed.height;
+      formatInfo = `${Math.round(pageWidth)} × ${Math.round(pageHeight)} px`;
     } else {
       const standard = PAGE_SIZES[pageSize] || PAGE_SIZES.A4;
       let isLandscape = false;
@@ -810,9 +817,11 @@ async function buildPdfDoc(progressCallback) {
       if (isLandscape) {
         pageWidth = Math.max(standard.width, standard.height);
         pageHeight = Math.min(standard.width, standard.height);
+        formatInfo = `${pageSize} Landscape`;
       } else {
         pageWidth = Math.min(standard.width, standard.height);
         pageHeight = Math.max(standard.width, standard.height);
+        formatInfo = `${pageSize} Portrait`;
       }
     }
 
@@ -836,6 +845,40 @@ async function buildPdfDoc(progressCallback) {
       width: drawWidth,
       height: drawHeight,
     });
+
+    // 6. Generate Page Preview Image for Full Multi-Page Viewer
+    try {
+      const pCanvas = document.createElement('canvas');
+      const maxDim = 1100;
+      const pScale = Math.min(2, maxDim / Math.max(pageWidth, pageHeight));
+      pCanvas.width = Math.round(pageWidth * pScale);
+      pCanvas.height = Math.round(pageHeight * pScale);
+      const pCtx = pCanvas.getContext('2d');
+
+      // White paper
+      pCtx.fillStyle = '#ffffff';
+      pCtx.fillRect(0, 0, pCanvas.width, pCanvas.height);
+
+      // Centered image
+      const pDrawX = posX * pScale;
+      const pDrawY = (effectiveMargin + (availHeight - drawHeight) / 2) * pScale;
+      const pDrawW = drawWidth * pScale;
+      const pDrawH = drawHeight * pScale;
+
+      if (processed.canvas) {
+        pCtx.drawImage(processed.canvas, pDrawX, pDrawY, pDrawW, pDrawH);
+      }
+
+      previewPages.push({
+        pageNum: i + 1,
+        formatInfo: formatInfo,
+        dataUrl: pCanvas.toDataURL('image/jpeg', 0.9),
+        width: pageWidth,
+        height: pageHeight
+      });
+    } catch (err) {
+      console.warn('Page preview error on page ' + (i + 1), err);
+    }
   }
 
   if (progressCallback) {
@@ -849,8 +892,9 @@ async function buildPdfDoc(progressCallback) {
 
   currentPdfBlobUrl = downloadUrl;
   currentPdfFileName = finalFileName;
+  currentPreviewPages = previewPages;
 
-  return { pdfBytes, blob, downloadUrl, fileName: finalFileName };
+  return { pdfBytes, blob, downloadUrl, fileName: finalFileName, previewPages };
 }
 
 // PDF Generation
@@ -928,7 +972,7 @@ async function reviewPdf() {
     hideProgress();
     if (!result) return;
 
-    openPdfPreview(result.downloadUrl, result.fileName);
+    openPdfPreview(result.downloadUrl, result.fileName, result.previewPages);
   } catch (error) {
     console.error('Error preparing PDF review:', error);
     alert('Error preparing PDF review: ' + (error.message || error));
@@ -936,20 +980,79 @@ async function reviewPdf() {
   }
 }
 
-function openPdfPreview(url, fileName) {
-  if (pdfPreviewFrame) pdfPreviewFrame.src = url;
+function openPdfPreview(url, fileName, pages = []) {
   if (previewFileNameText) previewFileNameText.textContent = fileName;
   if (previewModalDownloadBtn) {
     previewModalDownloadBtn.href = url;
     previewModalDownloadBtn.download = fileName;
   }
+  if (previewOpenNewTabBtn) {
+    previewOpenNewTabBtn.href = url;
+  }
+  if (previewPageCountBadge) {
+    const count = pages.length;
+    previewPageCountBadge.textContent = `${count} Page${count > 1 ? 's' : ''}`;
+  }
+
+  const container = document.getElementById('pdfPreviewPagesContainer');
+  if (container) {
+    container.innerHTML = '';
+
+    if (pages && pages.length > 0) {
+      pages.forEach((page) => {
+        const pageCard = document.createElement('div');
+        pageCard.className = 'w-full max-w-xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col border border-slate-750 shrink-0';
+
+        pageCard.innerHTML = `
+          <div class="px-3.5 py-2 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs text-slate-700 font-semibold select-none">
+            <span class="flex items-center gap-1.5">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-brand-600"></i>
+              <span>Page ${page.pageNum} of ${pages.length}</span>
+            </span>
+            <span class="text-[11px] font-medium text-slate-400">${page.formatInfo || ''}</span>
+          </div>
+          <div class="w-full bg-slate-50 flex items-center justify-center p-2.5 sm:p-4">
+            <img 
+              src="${page.dataUrl}" 
+              alt="Page ${page.pageNum}" 
+              class="w-full h-auto max-w-full block rounded shadow-xs border border-slate-200" 
+              loading="lazy"
+            >
+          </div>
+        `;
+        container.appendChild(pageCard);
+      });
+
+      // Bottom download helper card
+      const footerCard = document.createElement('div');
+      footerCard.className = 'w-full max-w-xl py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-white text-xs select-none';
+      footerCard.innerHTML = `
+        <span class="text-slate-400 text-xs">All ${pages.length} page(s) ready to download</span>
+        <a href="${url}" download="${fileName}" class="w-full sm:w-auto px-4 py-2 bg-brand-600 hover:bg-brand-700 font-semibold rounded-lg shadow-md flex items-center justify-center gap-1.5 transition">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i> Download PDF
+        </a>
+      `;
+      container.appendChild(footerCard);
+
+      // Scroll to top
+      container.scrollTop = 0;
+    } else {
+      container.innerHTML = `
+        <div class="p-8 text-center text-slate-300">
+          <p class="text-sm">No preview pages available.</p>
+        </div>
+      `;
+    }
+  }
+
   if (pdfPreviewModal) pdfPreviewModal.classList.remove('hidden');
   lucide.createIcons();
 }
 
 function closePdfPreview() {
   if (pdfPreviewModal) pdfPreviewModal.classList.add('hidden');
-  if (pdfPreviewFrame) pdfPreviewFrame.src = '';
+  const container = document.getElementById('pdfPreviewPagesContainer');
+  if (container) container.innerHTML = '';
 }
 
 // Progress Modal Controls
