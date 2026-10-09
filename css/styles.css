@@ -1,0 +1,83 @@
+/* Custom styles for Image to PDF Maker */
+
+/* Smooth animations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Drag & Drop Highlight */
+.drag-over {
+  border-color: #4f46e5 !important;
+  background-color: #eef2ff !important;
+  transform: scale(1.01);
+}
+
+/* SortableJS Ghost & Drag styling */
+.sortable-ghost {
+  opacity: 0.4;
+  border: 2px dashed #4f46e5;
+  background-color: #f5f3ff;
+}
+
+.sortable-chosen {
+  cursor: grabbing !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transform: scale(1.03);
+}
+
+.sortable-drag {
+  opacity: 1;
+}
+
+/* Image Card Styling */
+.image-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.image-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Image thumbnail rotation smooth transition */
+.thumbnail-img {
+  transition: transform 0.25s ease-in-out;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Cropper customization */
+.cropper-container {
+  max-width: 100% !important;
+}
+
+.cropper-view-box {
+  outline: 2px solid #4f46e5;
+  outline-color: rgba(79, 70, 229, 0.85);
+}
+
+.cropper-line {
+  background-color: #4f46e5;
+}
+
+.cropper-point {
+  background-color: #4f46e5;
+  width: 8px;
+  height: 8px;
+}
+
+
