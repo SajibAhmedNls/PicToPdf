@@ -49,49 +49,49 @@
 
   <!-- Header -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
-          <i data-lucide="file-text" class="w-5 h-5"></i>
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 shrink-0">
+          <i data-lucide="file-text" class="w-4 h-4 sm:w-5 sm:h-5"></i>
         </div>
-        <div>
-          <h1 class="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
-            Image to PDF Maker
-            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">100% Private</span>
+        <div class="min-w-0">
+          <h1 class="text-sm sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-1.5 sm:gap-2 truncate">
+            <span>Image to PDF</span>
+            <span class="text-[10px] sm:text-[11px] font-medium px-1.5 sm:px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 shrink-0">100% Private</span>
           </h1>
           <p class="text-xs text-slate-500 hidden sm:block">Convert multiple images into high-quality PDF in seconds</p>
         </div>
       </div>
       
-      <div class="flex items-center space-x-2 sm:space-x-4">
+      <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
         <span class="text-xs text-slate-500 hidden md:inline-flex items-center gap-1">
           <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i> No files are sent to any server
         </span>
-        <button id="headerAddMoreBtn" class="hidden items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-brand-600 bg-brand-50 hover:bg-brand-100 rounded-lg transition-colors">
-          <i data-lucide="plus" class="w-4 h-4"></i> Add Images
+        <button id="headerAddMoreBtn" class="hidden items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 text-xs font-semibold text-brand-600 bg-brand-50 hover:bg-brand-100 rounded-lg transition-colors">
+          <i data-lucide="plus" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> <span>Add Images</span>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 flex flex-col gap-4 sm:gap-6">
 
     <!-- Upload Hero Zone (Shown when no images uploaded) -->
-    <div id="dropZone" class="relative group border-2 border-dashed border-slate-300 hover:border-brand-500 rounded-2xl p-8 sm:p-12 text-center bg-white hover:bg-brand-50/20 transition-all duration-300 cursor-pointer shadow-sm">
+    <div id="dropZone" class="relative group border-2 border-dashed border-slate-300 hover:border-brand-500 rounded-2xl p-6 sm:p-12 text-center bg-white hover:bg-brand-50/20 transition-all duration-300 cursor-pointer shadow-sm">
       <input type="file" id="fileInput" multiple accept="image/png, image/jpeg, image/jpg, image/webp, image/bmp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
       
       <div class="flex flex-col items-center justify-center pointer-events-none">
-        <div class="w-16 h-16 mb-4 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-100 transition-transform duration-300 shadow-sm">
-          <i data-lucide="upload-cloud" class="w-8 h-8"></i>
+        <div class="w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-100 transition-transform duration-300 shadow-sm">
+          <i data-lucide="upload-cloud" class="w-6 h-6 sm:w-8 sm:h-8"></i>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">
+        <h2 class="text-lg sm:text-2xl font-bold text-slate-800 mb-1.5 sm:mb-2">
           Drop your images here, or <span class="text-brand-600 underline underline-offset-2">Browse</span>
         </h2>
-        <p class="text-sm text-slate-500 max-w-md mb-4">
+        <p class="text-xs sm:text-sm text-slate-500 max-w-md mb-3 sm:mb-4 px-2">
           Supports JPG, PNG, WebP, BMP. Drag & drop multiple images at once to merge them into a single PDF.
         </p>
-        <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[11px] sm:text-xs text-slate-400">
           <span class="inline-flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Multiple Selection</span>
           <span class="inline-flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Reorder Pages</span>
           <span class="inline-flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> 100% Free & Secure</span>
@@ -100,42 +100,42 @@
     </div>
 
     <!-- Workspace Container (Initially Hidden until images are added) -->
-    <div id="workspace" class="hidden flex-col lg:flex-row gap-6">
+    <div id="workspace" class="hidden flex-col lg:flex-row gap-4 sm:gap-6">
 
       <!-- Left Column: Image Management & Grid (70%) -->
-      <div class="flex-1 flex flex-col gap-4">
+      <div class="flex-1 flex flex-col gap-3 sm:gap-4">
         
         <!-- Toolbar Bar above grid -->
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-2">
-            <span class="font-semibold text-slate-800 text-sm flex items-center gap-1.5">
-              <i data-lucide="images" class="w-4 h-4 text-brand-600"></i>
-              Uploaded Images (<span id="imageCount">0</span>)
+        <div class="bg-white p-3 sm:p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-2 sm:gap-3">
+          <div class="flex items-center gap-1.5 sm:gap-2 min-w-0">
+            <span class="font-semibold text-slate-800 text-xs sm:text-sm flex items-center gap-1.5 truncate">
+              <i data-lucide="images" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              Images (<span id="imageCount">0</span>)
             </span>
-            <span class="text-xs text-slate-400">| Drag cards to reorder</span>
+            <span class="text-[11px] text-slate-400 hidden sm:inline">| Drag cards to reorder</span>
           </div>
 
-          <div class="flex items-center gap-2">
-            <button id="addMoreBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
-              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add More
+          <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button id="addMoreBtn" class="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> <span>Add More</span>
             </button>
-            <button id="clearAllBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Clear All
+            <button id="clearAllBtn" class="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> <span>Clear All</span>
             </button>
           </div>
         </div>
 
         <!-- Sortable Grid Cards Container -->
-        <div id="imageGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 min-h-[150px]">
+        <div id="imageGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-4 min-h-[120px]">
           <!-- Dynamic Image Cards injected here via JS -->
         </div>
 
       </div>
 
       <!-- Right Column: PDF Customization Settings & Actions (30%) -->
-      <div class="w-full lg:w-80 flex flex-col gap-5">
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-5 sticky top-24">
-          <h3 class="font-bold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+      <div class="w-full lg:w-80 flex flex-col gap-4 sm:gap-5">
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4 sm:gap-5 lg:sticky lg:top-20">
+          <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2 border-b border-slate-100 pb-2.5 sm:pb-3">
             <i data-lucide="sliders" class="w-4 h-4 text-brand-600"></i>
             PDF Settings
           </h3>
@@ -156,7 +156,7 @@
           <!-- Page Orientation -->
           <div class="flex flex-col gap-1.5">
             <label class="text-xs font-semibold text-slate-600">Page Orientation</label>
-            <div class="grid grid-cols-3 gap-2 text-xs">
+            <div class="grid grid-cols-3 gap-1.5 sm:gap-2 text-xs">
               <button type="button" data-orientation="portrait" class="orientation-btn active py-2 px-1 text-center font-medium rounded-lg border border-brand-500 bg-brand-50 text-brand-700 transition">
                 Portrait
               </button>
@@ -172,7 +172,7 @@
           <!-- Margins -->
           <div class="flex flex-col gap-1.5">
             <label class="text-xs font-semibold text-slate-600">Margin</label>
-            <div class="grid grid-cols-3 gap-2 text-xs">
+            <div class="grid grid-cols-3 gap-1.5 sm:gap-2 text-xs">
               <button type="button" data-margin="0" class="margin-btn py-2 px-1 text-center font-medium rounded-lg border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition">
                 None
               </button>
@@ -213,7 +213,7 @@
               <i data-lucide="eye" class="w-4 h-4 text-slate-500"></i>
               <span>Review / Preview PDF</span>
             </button>
-            <button id="convertBtn" class="w-full py-3 px-4 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm rounded-xl shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]">
+            <button id="convertBtn" class="w-full py-3 px-4 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white font-semibold text-sm rounded-xl shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]">
               <i data-lucide="file-plus" class="w-4 h-4"></i>
               <span>Create PDF</span>
             </button>
@@ -226,18 +226,18 @@
   </main>
 
   <!-- Image Crop Modal -->
-  <div id="cropModal" class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full flex flex-col shadow-2xl overflow-hidden max-h-[92vh]">
+  <div id="cropModal" class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full flex flex-col shadow-2xl overflow-hidden max-h-[96vh] sm:max-h-[92vh]">
       
       <!-- Modal Header -->
-      <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-white shrink-0">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center">
-            <i data-lucide="crop" class="w-4 h-4"></i>
+      <div class="px-4 sm:px-5 py-3 border-b border-slate-100 flex items-center justify-between bg-white shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+            <i data-lucide="crop" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
           </div>
-          <div>
-            <h3 class="text-sm font-bold text-slate-900">Crop Image</h3>
-            <p id="cropImageName" class="text-[11px] text-slate-400 truncate max-w-xs sm:max-w-sm">image.jpg</p>
+          <div class="min-w-0">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900">Crop Image</h3>
+            <p id="cropImageName" class="text-[10px] sm:text-[11px] text-slate-400 truncate max-w-[180px] sm:max-w-sm">image.jpg</p>
           </div>
         </div>
 
@@ -247,35 +247,35 @@
       </div>
 
       <!-- Cropper Image Area -->
-      <div class="relative bg-slate-900 flex-1 min-h-[300px] max-h-[50vh] sm:max-h-[55vh] flex items-center justify-center overflow-hidden p-2">
+      <div class="relative bg-slate-900 flex-1 min-h-[220px] sm:min-h-[300px] max-h-[46vh] sm:max-h-[55vh] flex items-center justify-center overflow-hidden p-1.5 sm:p-2">
         <img id="cropperImage" src="" alt="To Crop" class="max-w-full max-h-full block">
       </div>
 
       <!-- Crop Toolbar Controls -->
-      <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 shrink-0">
+      <div class="px-3 sm:px-5 py-2.5 sm:py-3 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 shrink-0">
         <!-- Aspect Ratios & Modes -->
-        <div class="flex flex-wrap items-center gap-1.5 text-xs">
-          <button type="button" data-ratio="NaN" class="crop-ratio-btn active px-2.5 py-1 font-medium rounded-lg border border-brand-500 bg-brand-50 text-brand-700 transition">
+        <div class="flex flex-wrap items-center gap-1 sm:gap-1.5 text-xs">
+          <button type="button" data-ratio="NaN" class="crop-ratio-btn active px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-medium rounded-lg border border-brand-500 bg-brand-50 text-brand-700 transition">
             Free
           </button>
-          <button type="button" data-ratio="1" class="crop-ratio-btn px-2.5 py-1 font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
+          <button type="button" data-ratio="1" class="crop-ratio-btn px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
             1:1
           </button>
-          <button type="button" data-ratio="1.3333" class="crop-ratio-btn px-2.5 py-1 font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
+          <button type="button" data-ratio="1.3333" class="crop-ratio-btn px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
             4:3
           </button>
-          <button type="button" data-ratio="1.7777" class="crop-ratio-btn px-2.5 py-1 font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
+          <button type="button" data-ratio="1.7777" class="crop-ratio-btn px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
             16:9
           </button>
-          <button type="button" data-ratio="0.707" class="crop-ratio-btn px-2.5 py-1 font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
+          <button type="button" data-ratio="0.707" class="crop-ratio-btn px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-medium rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 transition">
             A4
           </button>
         </div>
 
         <!-- Auto Crop & Reset Buttons -->
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5 sm:gap-2">
           <!-- Auto Crop Button -->
-          <button id="autoCropDetectBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 hover:bg-indigo-100 transition shadow-sm" title="Automatically detect document borders and trim edges">
+          <button id="autoCropDetectBtn" type="button" class="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 hover:bg-indigo-100 transition shadow-sm" title="Automatically detect document borders and trim edges">
             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i>
             <span>Auto Crop</span>
           </button>
@@ -288,11 +288,11 @@
       </div>
 
       <!-- Modal Footer Action Buttons -->
-      <div class="px-5 py-3 border-t border-slate-200 flex items-center justify-end gap-2.5 bg-white shrink-0">
-        <button id="cancelCropBtn" type="button" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl transition">
+      <div class="px-3 sm:px-5 py-2.5 sm:py-3 border-t border-slate-200 flex items-center justify-end gap-2 bg-white shrink-0">
+        <button id="cancelCropBtn" type="button" class="flex-1 sm:flex-initial px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl transition">
           Cancel
         </button>
-        <button id="applyCropBtn" type="button" class="px-4 py-2 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-md shadow-brand-500/20 flex items-center gap-1.5 transition">
+        <button id="applyCropBtn" type="button" class="flex-1 sm:flex-initial px-4 py-2 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-md shadow-brand-500/20 flex items-center justify-center gap-1.5 transition">
           <i data-lucide="check" class="w-3.5 h-3.5"></i>
           <span>Apply Crop</span>
         </button>
@@ -303,22 +303,22 @@
 
   <!-- PDF Review / Preview Modal -->
   <div id="pdfPreviewModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
-    <div class="bg-white rounded-2xl w-full max-w-5xl h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="bg-white rounded-2xl w-full max-w-5xl h-[95vh] sm:h-[92vh] flex flex-col shadow-2xl overflow-hidden">
       
       <!-- Preview Modal Header -->
-      <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center">
-            <i data-lucide="file-check" class="w-4 h-4"></i>
+      <div class="px-3 sm:px-5 py-2.5 sm:py-3.5 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+            <i data-lucide="file-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
           </div>
-          <div>
-            <h3 class="text-sm font-bold text-slate-900">PDF Review</h3>
-            <p id="previewFileNameText" class="text-[11px] text-slate-400">document.pdf</p>
+          <div class="min-w-0">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900">PDF Review</h3>
+            <p id="previewFileNameText" class="text-[10px] sm:text-[11px] text-slate-400 truncate max-w-[130px] sm:max-w-xs">document.pdf</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-2">
-          <a id="previewModalDownloadBtn" href="#" download="document.pdf" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm flex items-center gap-1.5 transition">
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <a id="previewModalDownloadBtn" href="#" download="document.pdf" class="px-2.5 sm:px-3.5 py-1.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm flex items-center gap-1.5 transition">
             <i data-lucide="download" class="w-3.5 h-3.5"></i>
             <span>Download</span>
           </a>
@@ -338,14 +338,14 @@
 
   <!-- Progress / Generating Modal -->
   <div id="progressModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl flex flex-col items-center">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 sm:p-6 text-center shadow-2xl flex flex-col items-center">
       
       <!-- Loading State -->
       <div id="modalLoadingState" class="flex flex-col items-center w-full">
-        <div class="w-14 h-14 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center mb-4 animate-spin">
-          <i data-lucide="loader-2" class="w-7 h-7"></i>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center mb-3 sm:mb-4 animate-spin">
+          <i data-lucide="loader-2" class="w-6 h-6 sm:w-7 sm:h-7"></i>
         </div>
-        <h3 class="text-base font-bold text-slate-900 mb-1">Creating your PDF...</h3>
+        <h3 class="text-sm sm:text-base font-bold text-slate-900 mb-1">Creating your PDF...</h3>
         <p id="progressStatus" class="text-xs text-slate-500 mb-4">Processing image 1 of 3...</p>
         
         <!-- Progress Bar -->
@@ -357,10 +357,10 @@
 
       <!-- Success State -->
       <div id="modalSuccessState" class="hidden flex-col items-center w-full">
-        <div id="successIconContainer" class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 shadow-sm">
-          <i data-lucide="check-circle-2" class="w-7 h-7"></i>
+        <div id="successIconContainer" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 sm:mb-4 shadow-sm">
+          <i data-lucide="check-circle-2" class="w-6 h-6 sm:w-7 sm:h-7"></i>
         </div>
-        <h3 id="successModalTitle" class="text-base font-bold text-slate-900 mb-1">PDF Created Successfully!</h3>
+        <h3 id="successModalTitle" class="text-sm sm:text-base font-bold text-slate-900 mb-1">PDF Created Successfully!</h3>
         <p id="successModalSubtitle" class="text-xs text-slate-500 mb-4">Your PDF is ready to download or review.</p>
         
         <div id="successModalActions" class="w-full flex flex-col gap-2">
@@ -380,7 +380,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200 mt-auto py-5 text-center text-xs text-slate-500">
+  <footer class="bg-white border-t border-slate-200 mt-auto py-4 sm:py-5 px-4 text-center text-xs text-slate-500">
     <p>Image to PDF Maker &bull; Client-side secure processing &bull; Fast & Free</p>
   </footer>
 

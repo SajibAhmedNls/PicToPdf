@@ -1,8 +1,26 @@
 /* Custom styles for Image to PDF Maker */
 
-/* Smooth animations */
+/* Smooth animations & prevent tap highlight */
 * {
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Touch responsiveness */
+button, a, input, select {
+  touch-action: manipulation;
+}
+
+/* Mobile input styling (prevents iOS Safari auto-zoom on focus) */
+@media (max-width: 640px) {
+  input[type="text"], select {
+    font-size: 16px !important;
+  }
 }
 
 /* Drag & Drop Highlight */
@@ -22,7 +40,7 @@
 .sortable-chosen {
   cursor: grabbing !important;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .sortable-drag {
@@ -33,6 +51,7 @@
 .image-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .image-card:hover {
@@ -80,4 +99,9 @@
   height: 8px;
 }
 
-
+@media (max-width: 640px) {
+  .cropper-point {
+    width: 10px;
+    height: 10px;
+  }
+}

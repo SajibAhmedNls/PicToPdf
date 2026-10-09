@@ -288,6 +288,9 @@ function initSortable() {
     chosenClass: 'sortable-chosen',
     dragClass: 'sortable-drag',
     handle: '.image-card-drag-handle',
+    delay: 120, // Prevents unintended drag during touch scroll on mobile
+    delayOnTouchOnly: true,
+    touchStartThreshold: 5,
     onEnd: () => {
       // Synchronize state.images array with new DOM order
       const newOrderIds = Array.from(imageGrid.children).map(card => card.dataset.id);
@@ -332,7 +335,7 @@ function renderImageCards() {
 
     card.innerHTML = `
       <!-- Drag Handle & Thumbnail Container -->
-      <div class="image-card-drag-handle relative aspect-[4/3] bg-slate-100 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing p-2">
+      <div class="image-card-drag-handle relative aspect-[4/3] bg-slate-100 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing p-1.5 sm:p-2">
         <img 
           src="${img.dataUrl}" 
           alt="${img.name}" 
@@ -340,7 +343,7 @@ function renderImageCards() {
           style="transform: rotate(${img.rotation}deg);"
         >
         <!-- Page Number Badge -->
-        <span class="page-badge absolute top-2 left-2 bg-slate-900/75 backdrop-blur-sm text-white text-[11px] font-semibold px-2 py-0.5 rounded-md shadow-sm pointer-events-none">
+        <span class="page-badge absolute top-1.5 left-1.5 sm:top-2 sm:left-2 bg-slate-900/75 backdrop-blur-sm text-white text-[10px] sm:text-[11px] font-semibold px-1.5 sm:px-2 py-0.5 rounded-md shadow-sm pointer-events-none">
           Page ${index + 1}
         </span>
 
@@ -351,17 +354,17 @@ function renderImageCards() {
       </div>
 
       <!-- Footer Info & Actions -->
-      <div class="p-2.5 flex items-center justify-between border-t border-slate-100 bg-white">
-        <div class="truncate pr-2">
+      <div class="p-2 sm:p-2.5 flex flex-col justify-between border-t border-slate-100 bg-white gap-1.5">
+        <div class="flex items-center justify-between gap-1 min-w-0">
           <p class="text-xs font-medium text-slate-700 truncate" title="${img.name}">${img.name}</p>
-          <span class="text-[10px] text-slate-400">${sizeKB} KB</span>
+          <span class="text-[10px] text-slate-400 shrink-0">${sizeKB} KB</span>
         </div>
 
-        <div class="flex items-center space-x-1 shrink-0">
+        <div class="flex items-center justify-end gap-1 shrink-0 pt-1 border-t border-slate-100/75">
           <!-- Crop Button -->
           <button 
             type="button" 
-            class="crop-btn p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 transition" 
+            class="crop-btn flex-1 sm:flex-initial p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 active:bg-brand-100 flex items-center justify-center transition" 
             title="Crop Image (Manual & Auto)"
           >
             <i data-lucide="crop" class="w-3.5 h-3.5"></i>
@@ -370,7 +373,7 @@ function renderImageCards() {
           <!-- Rotate Button -->
           <button 
             type="button" 
-            class="rotate-btn p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 transition" 
+            class="rotate-btn flex-1 sm:flex-initial p-1.5 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 active:bg-brand-100 flex items-center justify-center transition" 
             title="Rotate 90° Clockwise"
           >
             <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
@@ -379,7 +382,7 @@ function renderImageCards() {
           <!-- Delete Button -->
           <button 
             type="button" 
-            class="delete-btn p-1.5 rounded-lg text-slate-500 hover:text-red-600 hover:bg-red-50 transition" 
+            class="delete-btn flex-1 sm:flex-initial p-1.5 rounded-lg text-slate-500 hover:text-red-600 hover:bg-red-50 active:bg-red-100 flex items-center justify-center transition" 
             title="Remove Image"
           >
             <i data-lucide="trash" class="w-3.5 h-3.5"></i>
