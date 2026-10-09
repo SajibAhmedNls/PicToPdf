@@ -82,12 +82,21 @@
       <input type="file" id="fileInput" multiple accept="image/png, image/jpeg, image/jpg, image/webp, image/bmp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
       
       <div class="flex flex-col items-center justify-center pointer-events-none max-w-md mx-auto">
-        <div class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-100 transition-transform duration-300 shadow-sm">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-3.5 rounded-2xl bg-gradient-to-tr from-brand-50 to-indigo-100 text-brand-600 flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 shadow-sm border border-brand-100">
           <i data-lucide="upload-cloud" class="w-7 h-7 sm:w-8 sm:h-8"></i>
         </div>
-        <h2 class="text-base sm:text-2xl font-bold text-slate-800 mb-1.5 sm:mb-2 tracking-tight">
-          Upload Images or <span class="text-brand-600 underline underline-offset-4">Browse</span>
-        </h2>
+
+        <!-- Stylish PicToPdf Brand Headline -->
+        <div class="flex flex-col items-center mb-2">
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight select-none">
+            <span class="bg-gradient-to-r from-indigo-600 via-brand-600 to-purple-600 bg-clip-text text-transparent drop-shadow-xs">PicToPdf</span>
+          </h2>
+          <div class="h-1 w-12 rounded-full bg-gradient-to-r from-indigo-600 to-brand-500 mt-1.5 shadow-xs"></div>
+        </div>
+
+        <p class="text-sm sm:text-base font-semibold text-slate-800 mb-1 tracking-tight">
+          Upload Images or <span class="text-brand-600 underline underline-offset-4 decoration-brand-400">Browse</span>
+        </p>
         <p class="text-xs sm:text-sm text-slate-500 mb-4 px-2 leading-relaxed">
           Supports JPG, PNG, WebP & BMP. Merge into high-quality PDF in seconds.
         </p>
